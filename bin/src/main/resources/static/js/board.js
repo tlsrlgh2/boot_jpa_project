@@ -1,56 +1,45 @@
 let index = {
 		
 		init: function() {
-			$("#writesave").on("click", ()=>{	
-				this.writesave();
+			$("#btn-save").on("click", ()=>{	
+				this.save();
 				console.log("save함수 ...");
 			});
-			$("#writesave2").on("click", ()=>{	
-				this.writesave2();
-				console.log("save함수 ...");
+			$("#btn-delete").on("click", ()=>{	
+				this.deleteByid();
+				console.log("delete함수 ...");
+			});
+			$("#btn-update").on("click", ()=>{	
+				this.update();
+				console.log("update함수 클릭 ..");
+			});
+			$("#btn-reply-save").on("click", ()=>{	
+				this.replysave();
+				console.log("replysave함수 클릭 ..");
 			});
 		},
 		
-		writesave: function() {
+		save: function() {
 				console.log("save함수 ...");
 			let data = {
 				title: $("#title").val(),
 				content: $("#content").val()
 			};
-			console.log(data);
 			
 			$.ajax({
 				
 				type:"post",
-				url: "/board/test",
+				url:"/api/board",
 				data:JSON.stringify(data),
-				contentType : "application/json; charset=UTF-8",
-				dataType: "text",
-				
+				contentType:"application/json; charset=utf-8",
+				dataType: "json",
+								
 				success: function(res){
 					alert("글쓰기가 완료되었습니다");
 					location="/";
 				},
 				error:function(error){
-					alert(error);
-				}
-			});
-		},
-		writesave2: function() {
-				console.log("save함수 ...");
-			
-			$.ajax({
-				
-				type:"get",
-				url: "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=f5eef3421c602c6cb7ea224104795888&targetDt=20120101",
-				
-				success: function(res){
-					console.log(res);
-					console.log(res.boxOfficeResult.dailyBoxOfficeList);
-//					location="/";
-				},
-				error:function(error){
-					alert(error);
+					alert(JSON.stringify(error));
 				}
 			});
 		},
