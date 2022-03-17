@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@include file="../layout/header.jsp" %>
 
-   <h1> ${boardlist}</h1>
 <div class="container">
   <table class="table">
     <thead>
@@ -14,7 +13,7 @@
         <th>작성 날짜</th>
       </tr>
     </thead>
-    <%-- <c:forEach var="boardlist" items="${boardlist}">
+    <c:forEach var="boardlist" items="${boardlist.content}">
     <tbody>
       <tr>
         <td>${boardlist.id }</td>
@@ -23,11 +22,11 @@
         <td>${boardlist.createDate}</td>
       </tr>
     </tbody>
-    </c:forEach> --%>
+    </c:forEach>
   </table>
 </div>
 
-<%-- <ul class="pagination justify-content-center">
+<ul class="pagination justify-content-center">
 	<c:choose>
 		<c:when test="${boardlist.first }">
 		<li class="page-item disabled"><a class="page-link" href="?page=${boardlist.number-1}">Previous</a></li>
@@ -46,7 +45,6 @@
 		<li class="page-item"><a class="page-link" href="?page=${boardlist.number+1}">Next</a></li>
 		</c:otherwise>
 	</c:choose>
-</ul> --%>
-
+</ul>
 
 <%@include file="../layout/footer.jsp" %>

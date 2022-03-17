@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project.model.board;
-import com.project.repository.boardrepository;
+import com.project.repository.boardRepository;
 
 @Service
 public class boardService {
 
 	@Autowired
-	private boardrepository boardrepository;
+	private boardRepository boardrepository;
 	
 
 	@Transactional
@@ -30,6 +30,10 @@ public class boardService {
 	public Page<board> listview(Pageable pageable) {
 		System.out.println("listform............................3");
 		
+		
+		// .getContent로 들고와야 list타입으로 변환가능 아닐경우 page타입으로 받을수있음. 대신 content만 가져오고 다른 정보들을 가져올수없음
+//		List<board> board = boardrepository.findAll(pageable).getContent();
+		System.out.println("listform............................4");
 		return boardrepository.findAll(pageable);
 		
 	}

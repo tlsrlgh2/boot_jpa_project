@@ -5,8 +5,10 @@
 		<span>글번호 : ${boarddetail.id}</span>
 	</div>
 	<div class="card">
+		<div class="card-header">
+			<h4 class="card-title">제목 :  ${boarddetail.title}</h4>
+		</div>
 		<div class="card-body">
-			<h4 class="card-title">${boarddetail.title}</h4>
 			<p class="card-text">${boarddetail.content}</p>
 			<input type="hidden" id="boarddetail_id" value="${boarddetail.id}">
 			

@@ -31,7 +31,7 @@ spring:
 #   lazy 로딩이란 request를 할경우 영속성컨텍스트를  controller단 이전에 생성을 해주며 response전 직전에 영속성컨텍스트를 삭제를 해준다
 #   lazy로딩을 사용할경우 lazy로드로 가져온 데이터는 controller에서 select는 가능하지만 update는 불가능하다.
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
 #     ddl-auto의 타입을 먼저 확인해야함. create는 테이블을 생성한다는 뜻.
 #     ddl-auto 처음일경우만 create이고 그 후에는 update를 사용해야함. 안그러면 데이터가 다 사라지고 다시 생성됨
       naming:

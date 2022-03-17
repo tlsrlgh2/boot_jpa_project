@@ -25,7 +25,7 @@ public class boardController {
 	@Autowired
 	private boardService boardservice;
 
-	@GetMapping("index")
+	@GetMapping({"index","/"})
 	public String indexform() {
 
 		return "index";
@@ -39,13 +39,10 @@ public class boardController {
 	}
 	
 	@GetMapping("/board/list")
-	public String listform(Model model,@PageableDefault(size=1,sort = "id",direction = Sort.Direction.DESC) Pageable pageable) {
+	public void listform(Model model,@PageableDefault(size=4,sort = "id",direction = Sort.Direction.DESC) Pageable pageable) {
 		System.out.println("listform............................1");
-		boardservice.listview(pageable);
 		model.addAttribute("boardlist", boardservice.listview(pageable));
-		System.out.println(boardservice.listview(pageable)+"...............................");
 		System.out.println("문제없음");
-		return "/board/list";
 	}
 	
 	@GetMapping("/board/detail/{id}")
@@ -63,6 +60,4 @@ public class boardController {
 		
 		return "/board/updateform";
 	}
-	
-	
 }
