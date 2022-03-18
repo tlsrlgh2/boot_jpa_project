@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.project.model.user;
+import com.project.service.UserSha256;
 import com.project.service.userService;
 
 @Controller
@@ -53,18 +54,22 @@ public class userController {
 	}
 	
 	@PostMapping("/user/login")
-	public void login(HttpServletRequest requset) {
+	public String login(HttpServletRequest requset) throws IllegalAccessException {
 		String id = requset.getParameter("userid");
-		String pw = requset.getParameter("userpw");
+		String pw = requset.getParameter("password");
+		System.out.println("user가 입력한 값 :" + pw );
+		pw = UserSha256.encrypt(pw);
+		System.out.println("암호화한 값 :" + pw );
 		
-		userservice.login(id,pw);
+		userservice.loginchk(id,pw, requset);
 		
-//		userservice.userjoin(user);
+		return "redirect:/";
+	}
+	
+	@GetMapping("/user/movie")
+	public String movie() {
+		System.out.println("movie 리스트");
 		
-		
-		// 로그인시 세션에 아이디 넘겨줌
-//		HttpSession session = requset.getSession();
-//		session.setAttribute("userid", user.getUserid());
-		
+		return "/user/movie";
 	}
 }

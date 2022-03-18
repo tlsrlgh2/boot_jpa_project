@@ -3,6 +3,10 @@ package com.project.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project.model.board;
+import com.project.model.user;
 import com.project.repository.boardRepository;
 
 @Service
@@ -21,9 +26,8 @@ public class boardService {
 
 	@Transactional
 	public void save(board board) {
-		System.out.println("save함수 ");
+		
 		boardrepository.save(board);
-		System.out.println("save함수END ");
 		
 	}
 	@Transactional(readOnly = true)
@@ -70,7 +74,5 @@ public class boardService {
 		boardrepository.deleteById(id);
 		
 	}
-
-	
 
 }

@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
@@ -41,9 +42,10 @@ public class board {
     
     @Column(name = "createDate")
     @CreationTimestamp
-    private Timestamp createDate; // 22-03-15 파싱 처리 해야댐
+    private Timestamp createDate; // 22-03-15 파싱 처리 해야댐 수정필요
     
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="userid")
     private user user;
     
 }

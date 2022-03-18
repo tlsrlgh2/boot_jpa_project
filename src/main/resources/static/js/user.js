@@ -5,6 +5,10 @@ let index = {
 				this.joinuser();
 				console.log("joinuser ...");
 			});
+			$("#movie").on("click", ()=>{	
+				this.joinuser();
+				console.log("joinuser ...");
+			});
 		},
 		
 		joinuser: function() {
@@ -21,6 +25,23 @@ let index = {
 			$.ajax({
 				
 				type:"post",
+				url: "/user/join",
+				data:JSON.stringify(data),
+				contentType : "application/json; charset=UTF-8",
+				
+				success: function(res){
+					alert("회원가입이 완료되었습니다");
+					location = "/";
+				},
+				error:function(error){
+					alert(error);
+				}
+			});
+		},
+		movie: function() {
+			$.ajax({
+				
+				type:"GET",
 				url: "/user/join",
 				data:JSON.stringify(data),
 				contentType : "application/json; charset=UTF-8",

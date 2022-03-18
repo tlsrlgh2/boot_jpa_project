@@ -1,7 +1,11 @@
 package com.project.service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,28 +28,23 @@ public class userService {
 	public void userjoin(user user) {
 //		System.out.println(user.getPassword()+".........................................23");
 //		비밀번호 암호화
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setPassword(UserSha256.encrypt(user.getPassword()));
 		System.out.println(user.getPassword());
 		userrepository.save(user);
 		System.out.println("save완료");
 		
 	}
-
-	public void login(String id, String pw) {
+	
+	@Transactional(readOnly = true)
+	public void loginchk(String id, String pw, HttpServletRequest requset) {
 		
-		System.out.println(passwordEncoder.encode(pw)+"비밀번호 암호화");
+		// 															찾은결과가 없을경우 예외처리
+		user user = userrepository.findAllByUseridAndPassword(id, pw).orElseGet(()->{
+			System.out.println("로그인 실패");
+			return new user();
+		});
 		
-		// 아이디 있는지 체크
-		Optional<user> user = userrepository.findAllByUserid(id);
-		System.out.println(user);
-		
-		System.out.println("아디체크 완료");
-		
-		// 비밀번호 체크
-		user = userrepository.findAllByPassword(pw + "비밀번호 체크");
-		System.out.println(user);
-		
-//		$2a$10$HOOibY4UHDdrvOI6Nmk/UuB763e/gdCkwuPxOX4pnPjr.hsQo8ts6
-		
+		HttpSession session = requset.getSession();
+		session.setAttribute("userid", user.getUserid());
 	}
 }

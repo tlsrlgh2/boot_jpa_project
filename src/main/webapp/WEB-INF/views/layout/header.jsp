@@ -40,6 +40,7 @@
 						<li class="nav-item"><a class="nav-link" href="/user/login">로그인</a></li>
 						<li class="nav-item"><a class="nav-link" href="/board/write">글쓰기</a></li>
 						<li class="nav-item"><a class="nav-link" href="/board/list">게시글 보기</a></li>
+					<li class="nav-item"><a class="nav-link" href="/user/movie">영화 리스트보기</a></li>
 					</ul>
 				</div>
 			</c:when>
@@ -50,6 +51,7 @@
 					<li class="nav-item"><a class="nav-link" href="/board/write">글쓰기</a></li>
 					<li class="nav-item"><a class="nav-link" href="/board/list">게시글 보기</a></li>
 					<li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
+					<li class="nav-item"><a class="nav-link" href="/user/movie">영화 리스트보기</a></li>
 				</ul>
 			</c:otherwise>
 		</c:choose>
