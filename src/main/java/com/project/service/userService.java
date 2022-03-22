@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,9 +20,6 @@ public class userService {
 	@Autowired
 	private userRepository userrepository;
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-	
 	@Transactional
 	public void userjoin(user user) {
 //		System.out.println(user.getPassword()+".........................................23");

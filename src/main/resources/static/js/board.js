@@ -17,6 +17,10 @@ let index = {
 				this.updateform();
 				console.log("updateform ...");
 			});
+			$("#iteamlist").on("click", () => {
+				this.iteamlist();
+				console.log("iteamlist ...");
+			});
 		},
 		
 		writesave: function() {
@@ -93,6 +97,23 @@ let index = {
 		updateform: function () {
 			let id = $("#boarddetail_id").val()
 			location = "/board/detail/"+id +"/update";
+		},
+		iteamlist: function() {
+				console.log("iteamlist ...");
+			
+			$.ajax({
+				
+				type:"get",
+				url: "https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=10&serviceKey=data-portal-test-key",
+				
+				
+				success: function(res){
+					console.log(res)
+				},
+				error:function(error){
+					alert(error);
+				}
+			});
 		}
 	}
 

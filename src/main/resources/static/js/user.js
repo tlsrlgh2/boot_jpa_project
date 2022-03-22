@@ -1,4 +1,4 @@
-let index = {
+let index2 = {
 		
 		init: function() {
 			$("#joinuser").on("click", ()=>{	
@@ -9,6 +9,10 @@ let index = {
 				this.joinuser();
 				console.log("joinuser ...");
 			});
+//			$("#dateclick").on("click", ()=>{	
+//				this.dateclick();
+//				console.log("dateclick ...");
+//			});
 		},
 		
 		joinuser: function() {
@@ -54,10 +58,32 @@ let index = {
 					alert(error);
 				}
 			});
+		},
+		dateclick: function () {
+			console.log("dateclick ...");
+			
+			let data = $("#date").val();
+			
+			console.log(data);
+			
+			$.ajax({
+
+				type: "post",
+				url: "/user/movie2",
+				data: JSON.stringify(data),
+				contentType: "application/json; charset=UTF-8",
+
+				success: function (res) {
+					//  location="/user/movie2";
+				},
+				error: function (error) {
+					alert(error);
+				}
+			});
 		}
 	}
 
-index.init();
+index2.init();
 
 
 
