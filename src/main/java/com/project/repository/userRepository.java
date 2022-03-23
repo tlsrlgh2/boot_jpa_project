@@ -9,7 +9,8 @@ import com.project.model.user;
 
 public interface userRepository extends JpaRepository<user, Integer>{
 
-	Optional<user> findAllByUserid(String id);
 	Optional<user> findAllByUseridAndPassword(String id,String pw);
+
+	user findAllByUserid(String userid);
 
 }

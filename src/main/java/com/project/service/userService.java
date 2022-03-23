@@ -43,4 +43,25 @@ public class userService {
 		HttpSession session = requset.getSession();
 		session.setAttribute("userid", user.getUserid());
 	}
+
+	public user userinformation(String userid) {
+		
+		
+		return userrepository.findAllByUserid(userid);
+	}
+
+	public void usermodyfy(user user) {
+		System.out.println(user);
+		user.setPassword(UserSha256.encrypt(user.getPassword()));
+		userrepository.save(user);
+		
+	}
+
+	public Optional<user> selectid(int userid) {
+		
+		return userrepository.findById(userid);
+	}
+
+
+	
 }

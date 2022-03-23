@@ -12,21 +12,26 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
+import com.project.dto.dto;
 import com.project.model.board;
+import com.project.model.reply;
 import com.project.model.user;
 import com.project.repository.boardRepository;
+import com.project.repository.replyRepositroy;
+import com.project.repository.userRepository;
 
 @Service
 public class boardService {
 
 	@Autowired
 	private boardRepository boardrepository;
-	
+	private replyRepositroy replyrepositroy;
 
 	@Transactional
-	public void save(board board) {
-		
+	public void save(board board, user user) {
+		board.setUser(user);
 		boardrepository.save(board);
 		
 	}
@@ -72,6 +77,22 @@ public class boardService {
 	public void board_delete(int id) {
 		
 		boardrepository.deleteById(id);
+		
+	}
+	
+	public board findboardid(int parseInt) {
+		System.out.println("1111111111111");
+		
+		return  boardrepository.findAllById(parseInt);
+	}
+	
+	public void replysave(reply reply) {
+		System.out.println(reply + "reply save 안착");
+		
+		
+//		reply.setBoard();
+		
+		replyrepositroy.save(reply);
 		
 	}
 

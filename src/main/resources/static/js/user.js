@@ -9,10 +9,10 @@ let index2 = {
 				this.joinuser();
 				console.log("joinuser ...");
 			});
-//			$("#dateclick").on("click", ()=>{	
-//				this.dateclick();
-//				console.log("dateclick ...");
-//			});
+			$("#modifyuser").on("click", ()=>{	
+				this.modifyuser();
+				console.log("dateclick ...");
+			});
 		},
 		
 		joinuser: function() {
@@ -59,22 +59,31 @@ let index2 = {
 				}
 			});
 		},
-		dateclick: function () {
-			console.log("dateclick ...");
+		modifyuser: function () {
+			console.log("modifyuser ...");
 			
-			let data = $("#date").val();
+			let data = {
+					user_count: $("#user_fk").val(),
+					userid: $("#userid").val(),
+					password: $("#password").val(),
+					email: $("#email").val(),
+					phone: $("#phone").val(),
+					address: $("#address").val(),
+					
+			}
 			
 			console.log(data);
 			
 			$.ajax({
 
-				type: "post",
-				url: "/user/movie2",
+				type: "put",
+				url: "/user/modifty",
 				data: JSON.stringify(data),
 				contentType: "application/json; charset=UTF-8",
 
 				success: function (res) {
-					//  location="/user/movie2";
+						alert("개인정보 수정이 완료되었습니다");
+					  location="/user/modify";
 				},
 				error: function (error) {
 					alert(error);

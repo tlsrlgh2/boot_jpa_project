@@ -19,7 +19,7 @@
 	});
 </script>
 
-<script src="/js/board.js">
+<script src="/js/boardjs.js">
 	
 </script>
 

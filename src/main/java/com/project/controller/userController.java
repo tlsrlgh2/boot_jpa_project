@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -12,8 +13,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -87,7 +91,7 @@ public class userController {
 	}
 	
 	@GetMapping("/user/movie")
-	public String test(Model model) throws Exception {
+	public String hospital(Model model, Pageable pageable) throws Exception {
 		System.out.println("여기들어옴123");
 		
 		StringBuilder result = new StringBuilder(); 
@@ -113,12 +117,14 @@ public class userController {
 		
 		urlconnection.disconnect();
 		
+		
 		System.out.println(result+ "....................result 123");
 		
 		// json으로 파싱
 		JSONParser parser = new JSONParser();
         JSONObject obj = (JSONObject)parser.parse(result.toString());
         System.out.println(obj + " : obj 값 ...................");
+        
         
         JSONArray dataArr = (JSONArray) obj.get("data");
 		System.out.println(dataArr + " : dataArr 값 ...................");
@@ -228,6 +234,16 @@ public class userController {
 		
 //		
 		return "/user/movie2";
+	}
+	
+	@GetMapping("/user/modify")
+	public void usermodify(HttpServletRequest req,Model model) {
+		
+		HttpSession session = req.getSession();
+		String userid = session.getAttribute("userid").toString();
+		System.out.println("asdsad");
+		
+		model.addAttribute("userinform", userservice.userinformation(userid));
 	}
 	
 }
