@@ -1,148 +1,132 @@
-let index = {
+let starts = {
 		
-		init: function() {
-			$("#btn-save").on("click", ()=>{	
-				this.save();
-				console.log("save함수 ...");
-			});
-			$("#btn-delete").on("click", ()=>{	
-				this.deleteByid();
-				console.log("delete함수 ...");
-			});
-			$("#btn-update").on("click", ()=>{	
-				this.update();
-				console.log("update함수 클릭 ..");
-			});
-			$("#btn-reply-save").on("click", ()=>{	
-				this.replysave();
-				console.log("replysave함수 클릭 ..");
-			});
-		},
+	init: function() {
+		$("#writesave").on("click", ()=>{	
+			this.writesave();
+			console.log("save함수 ...");
+		});
+		$("#updatesave").on("click", () => {
+			this.updatesave();
+			console.log("updatesave ...");
+		});
+		$("#boarddelete").on("click", () => {
+			this.boarddelete();
+			console.log("boarddelete ...");
+		});
+		$("#updateform").on("click", () => {
+			this.updateform();
+			console.log("updateform ...");
+		});
+		$("#iteamlist").on("click", () => {
+			this.iteamlist();
+			console.log("iteamlist ...");
+		});
+		$("#replychk").on("click", () => {
+			this.replychk();
+			console.log("iteamlist ...");
+		});
+	},
+	
+	writesave: function() {
+			console.log("save함수 ...");
+		let data = {
+			title: $("#title").val(),
+			content: $("#content").val()
+		};
+		console.log(data);
 		
-		save: function() {
-				console.log("save함수 ...");
-			let data = {
-				title: $("#title").val(),
-				content: $("#content").val()
-			};
+		$.ajax({
 			
-			$.ajax({
-				
-				type:"post",
-				url:"/api/board",
-				data:JSON.stringify(data),
-				contentType:"application/json; charset=utf-8",
-				dataType: "json",
-								
-				success: function(res){
-					alert("글쓰기가 완료되었습니다");
-					location="/";
-				},
-				error:function(error){
-					alert(JSON.stringify(error));
-				}
-			});
-		},
-		deleteByid: function() {
-			console.log("deleteByid함수 호출 ...");
-			var id = $("#id").text();
-			console.log("id값 출력"+id);
+			type:"post",
+			url: "/board/save",
+			data:JSON.stringify(data),
+			contentType : "application/json; charset=UTF-8",
+			
+			success: function(res){
+				alert("글쓰기가 완료되었습니다");
+				location="/";
+			},
+			error:function(error){
+				alert(error);
+			}
+		});
+	},
+	updatesave: function () {
+		console.log("updatesave ...");
+		let data = {
+			id: $("#updateid").val(),
+			title: $("#title").val(),
+			content: $("#content").val()
+		};
+		console.log(data);
 
-			$.ajax({
-				
-				type:"delete",
-				url: "/api/board/" + id,
-				dataType: "json",
-								
-				success: function(res){
-					alert("삭제가 완료되었습니다");
-					location="/";
-				},
-				error:function(error){
-					alert(JSON.stringify(error));
-				}
-			});
-		}, 
-		update: function () {
-			let id = $("#id").val();
-			let id2 = $("#id").text();
-			console.log(id);
-			console.log(id2);
-			
-			let data = {
-				title: $("#title").val(),
-				content: $("#content").val(),
-			};
+		$.ajax({
 
-			$.ajax({
+			type: "put",
+			url: "/board/updatesave",
+			data: JSON.stringify(data),
+			contentType: "application/json; charset=UTF-8",
 
-				type: "put",
-				url: "/api/board/"+id,
-				data: JSON.stringify(data),
-				contentType: "application/json; charset=utf-8",
-				dataType: "json",
-
-				success: function (res) {
-					alert("글 수정이 완료되었습니다");
-					location="/";
-				},
-				error: function (error) {
-					alert(JSON.stringify(error));
-				}
-			});
-		},
-		replysave: function() {
-			console.log("replysave함수 ...");
-			let data = {
-				userid: $("#userid").val(),
-				boardid: $("#boardid").val(),
-				content: $("#reply-content").val()	
-			};
+			success: function (res) {
+				alert("글수정이 완료 되었습니다");
+				location = "/board/list";
+			},
+			error: function (error) {
+				alert(error);
+			}
+		});
+	},
+	boarddelete: function() {
+			console.log("boarddelete ...");
+		let id = $("#boarddetail_id").val()
+		
+		console.log(id);
+		
+		$.ajax({
 			
-			console.log(data);
+			type:"delete",
+			url: "/board/delete/"+id,
+			data: JSON.stringify(id),
+			contentType : "application/json; charset=UTF-8",
 			
-			$.ajax({
-				
-				type:"post",
-				url:`/api/board/${data.boardid}/reply`,
-				data:JSON.stringify(data),
-				contentType:"application/json; charset=utf-8",
-				dataType: "json",
-								
-				success: function(res){
-					alert("댓글 작성이 완료되었습니다");
-					location=`/board/${data.boardid}`;
-				},
-				error:function(error){
-					alert(JSON.stringify(error));
-				}
-			});
-		},
-		replydelete: function(boardid,replyid) {
-			console.log("replysave함수 ...");
-			let data = {
-				userid: $("#userid").val(),
-				boardid: $("#boardid").val(),
-				content: $("#reply-content").val()	
-			};
+			success: function(res){
+				alert("게시글이 삭제되었습니다");
+				location="/board/list";
+			},
+			error:function(error){
+				alert(error);
+			}
+		});
+	},
+	updateform: function () {
+		let id = $("#boarddetail_id").val()
+		location = "/board/detail/"+id +"/update";
+	},
+	iteamlist: function() {
+			console.log("iteamlist ...");
+		
+		$.ajax({
 			
-			console.log(data);
+			type:"get",
+			url: "https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=10&serviceKey=data-portal-test-key",
 			
-			$.ajax({
-				
-				type:"delete",
-				url: `/api/board/${boardid}/reply/${replyid}`,
-				dataType: "json",
-								
-				success: function(res){
-					alert("댓글 삭제 성공");
-					location=`/board/${data.boardid}`;
-				},
-				error:function(error){
-					alert(JSON.stringify(error));
-				}
-			});
+			
+			success: function(res){
+				console.log(res)
+			},
+			error:function(error){
+				alert(error);
+			}
+		});
+	},
+	replychk: function() {
+		console.log("replychk ...");
+		
+		let data = {
+			reply:	$("#reply").val
 		}
+		consolo.log(data);
+	}
 }
 
-index.init();
+starts.init();

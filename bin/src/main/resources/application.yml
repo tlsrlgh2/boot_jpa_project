@@ -3,7 +3,7 @@
 # 데이터의 크기 순서는 xml > json > yaml 순서가 된다.
 
 server:
-  port: 8088
+  port: 8085
   servlet:
 #    context-path: /
     context-path: /
@@ -18,9 +18,9 @@ spring:
 #     suffix는 뒤에 붙여주는 경로명
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Seoul
-    username: cos
-    password: cos1234
+    url: jdbc:mysql://localhost:3306/sae1?serverTimezone=Asia/Seoul
+    username: sae1
+    password: 1234
   devtools:
     livereload:
       enabled: true

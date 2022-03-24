@@ -44,6 +44,11 @@ public class userController {
 	@Autowired
 	private userService userservice;
 	
+	@GetMapping("/user/hospital2")
+	public void hospital() {
+		
+	}
+	
 	@GetMapping("/user/join")
 	public void joinform() {
 		
@@ -90,7 +95,7 @@ public class userController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/user/movie")
+	@GetMapping("/user/hospital")
 	public String hospital(Model model, Pageable pageable) throws Exception {
 		System.out.println("여기들어옴123");
 		
@@ -132,7 +137,7 @@ public class userController {
         model.addAttribute("data",dataArr);
         
         
-        return "/user/movie";
+        return "/user/hospital";
 	}
 	
 	@GetMapping("/user/movie2")

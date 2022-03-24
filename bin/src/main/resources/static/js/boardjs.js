@@ -24,10 +24,6 @@ let star = {
 				this.replychk();
 				console.log("replychk ...");
 			});
-			$("#selectbtn").on("click", () => {
-				this.selectbtn();
-				console.log("selectbtn ...");
-			});
 		},
 		
 		writesave: function() {
@@ -141,39 +137,6 @@ let star = {
 				
 				success: function(res){
 					
-				},
-				error:function(error){
-					alert(error);
-				}
-			});
-		},
-		selectbtn: function() {
-			console.log("selectbtn ...");
-			let key = "hs6il93KexDShXbgAiFhSmJJph3LErgBdvPKLQ0qQrXzAUG%2BtqTUSzNI6VaeH4c8ng%2BzsDSkIq6IH%2BNFIA8UMw%3D%3D";
-			$.ajax({
-				type:"get",
-				url: "https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=300&serviceKey="+key,
-				
-				success: function(res){
-					let rows = res.data;
-					console.log(rows.length);
-					
-					for (let i = 0; i < rows.length; i++) {
-						let address = rows[i]['address'];
-						let centerName = rows[i]['centerName'];
-						let facilityName = rows[i]['facilityName'];
-						
-						
-						let tempHtml = `
-								<tr>
-									<td>${address}</td>
-									<td>${centerName}</td>
-									<td>${facilityName}</td>
-								</tr>
-						`
-						              
-						$('#content').append(tempHtml);
-					}
 				},
 				error:function(error){
 					alert(error);

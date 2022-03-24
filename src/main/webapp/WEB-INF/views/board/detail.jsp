@@ -30,8 +30,8 @@
 				<c:forEach var="reply" items="${reply}">
 						<div>${reply.content}</div>
 						<div class="d-flex ">
-						</div>
-				</c:forEach>
+						</div>asdgas>
+			</c:forEach>
 			</ul> --%>
 	</div>
 		</div>

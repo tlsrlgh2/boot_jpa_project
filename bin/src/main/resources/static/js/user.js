@@ -1,148 +1,151 @@
-let index = {
+let index2 = {
 		
 		init: function() {
-			$("#btn-save").on("click", ()=>{	// function() {} 대신 ()=>{} 을 사용하는 이유는 this를 바인딩 하기 위함.
-				this.save();
-				console.log("save함수 ...");
+			$("#joinuser").on("click", ()=>{	
+				this.joinuser();
+				console.log("joinuser ...");
 			});
-			$("#btn-update").on("click", ()=>{
-				this.update();
-				console.log("유저 update함수 ...");
+			$("#movie").on("click", ()=>{	
+				this.joinuser();
+				console.log("joinuser ...");
 			});
-			
-			// 스프링 시큐리티 사용 전 코드
-//			$("#btn-login").on("click", ()=>{	// function() {} 대신 ()=>{} 을 사용하는 이유는 this를 바인딩 하기 위함.
-//				this.login();
-//				console.log("login ...");
-//			});
+			$("#modifyuser").on("click", ()=>{	
+				this.modifyuser();
+				console.log("dateclick ...");
+			});
 		},
 		
-		save: function() {
-				console.log("save함수 ...");
+		joinuser: function() {
+				console.log("joinuser ...");
 			let data = {
-				username: $("#username").val(),
+				userid: $("#userid").val(),
 				password: $("#password").val(),
-				email: $("#email").val()
+				email: $("#email").val(),
+				phone: $("#phone").val(),
+				address: $("#address").val()
 			};
-
-			// ajax통신을 이용해서 3개의 데이터를 json으로 변경하는 insert 요청
-			// ajax호출시 default가 비동기 호출이다
-			// ajax가 통신을 성공하고 서버가 json을 리턴해주면 자동으로 자바 오브젝트로 변환됨. 
+			console.log(data);
+			
 			$.ajax({
-				//회원 가입 수행 요청
+				
 				type:"post",
-				url:"/auth/joinProc",
-				data:JSON.stringify(data),	//http body 데이터이다
-				contentType:"application/json; charset=utf-8",	// body데이터가 어떤 타입인지 작성해주는것
-				dataType: "json",	// 요청을 했을경우 응답이 왔을때 기본적으로 모든것을 문자열로 받는데
-								// 문자열의 타입이 json이라면 javascript로 변경을 해준다
+				url: "/user/join",
+				data:JSON.stringify(data),
+				contentType : "application/json; charset=UTF-8",
+				
 				success: function(res){
-					if(res.status === 500) {	// 중복된 아이디 처리
-						alert("회원가입이 실패하었습니다");
-					}else {
-						alert("회원가입이 완료되었습니다");
-//						console.log(res);
-						location="/";
-					}
-					
-					
+					alert("회원가입이 완료되었습니다");
+					location = "/";
 				},
 				error:function(error){
-					alert(JSON.stringify(error));
+					alert(error);
 				}
 			});
-		}, 
-		update: function () {
-			console.log("update함수 ...");
-			let id = $("#id").val();
-			let pw = $("#password").val();
-			let em = $("#email").val();
-			let username = $("#username").val();
-			console.log(id);
-			console.log(pw);
-			console.log(em);
-			console.log(username);
-
-		let data = {
-			id: $("#id").val(),
-			username: $("#username").val(),
-			password: $("#password").val(),
-			email: $("#email").val()
-		};
-
-		// ajax통신을 이용해서 3개의 데이터를 json으로 변경하는 insert 요청
-		// ajax호출시 default가 비동기 호출이다
-		// ajax가 통신을 성공하고 서버가 json을 리턴해주면 자동으로 자바 오브젝트로 변환됨. 
-		$.ajax({
-			//회원 가입 수행 요청
-			type: "PUT",
-			url: "/user",
-			data: JSON.stringify(data),	//http body 데이터이다
-			contentType: "application/json; charset=utf-8",	// body데이터가 어떤 타입인지 작성해주는것
-			dataType: "json",	// 요청을 했을경우 응답이 왔을때 기본적으로 모든것을 문자열로 받는데
-			// 문자열의 타입이 json이라면 javascript로 변경을 해준다
-			success: function (res) {
-				alert("회원수정이 완료되었습니다");
-				//					console.log(res);
-				location = "/";
-			},
-			error: function (error) {
-				alert(JSON.stringify(error));
+		},
+		movie: function() {
+			$.ajax({
+				
+				type:"GET",
+				url: "/user/join",
+				data:JSON.stringify(data),
+				contentType : "application/json; charset=UTF-8",
+				
+				success: function(res){
+					alert("회원가입이 완료되었습니다");
+					location = "/";
+				},
+				error:function(error){
+					alert(error);
+				}
+			});
+		},
+		modifyuser: function () {
+			console.log("modifyuser ...");
+			
+			let data = {
+					user_count: $("#user_fk").val(),
+					userid: $("#userid").val(),
+					password: $("#password").val(),
+					email: $("#email").val(),
+					phone: $("#phone").val(),
+					address: $("#address").val(),
+					
 			}
-		});
-//			}).success: (function (res){
-//				// 성공시 이쪽 코드
-//				alert(res+"성공");
-//				
-//			}).fail(function (error) {
-//				// 실패시 이쪽 코드
-//				alert("실패메세지");
-//				console.log(JSON.stringify(error));
-//
-//			});	
 			
-			// console.log(data);
+			console.log(data);
+			
+			$.ajax({
+
+				type: "put",
+				url: "/user/modifty",
+				data: JSON.stringify(data),
+				contentType: "application/json; charset=UTF-8",
+
+				success: function (res) {
+						alert("개인정보 수정이 완료되었습니다");
+					  location="/user/modify";
+				},
+				error: function (error) {
+					alert(error);
+				}
+			});
 		}
-		// 스프링 시큐리티 사용 전 코드
-		//,
-//		login: function() {
-//				console.log("login 함수 ...");
-//			let data = {
-//				username: $("#username").val(),
-//				password: $("#password").val(),
-//			};
-//
-//			// ajax통신을 이용해서 3개의 데이터를 json으로 변경하는 insert 요청
-//			// ajax호출시 default가 비동기 호출이다
-//			// ajax가 통신을 성공하고 서버가 json을 리턴해주면 자동으로 자바 오브젝트로 변환됨. 
-//			$.ajax({
-//				//회원 가입 수행 요청
-//				type:"post",
-//				url:"/api/user/login",
-//				data:JSON.stringify(data),	//http body 데이터이다
-//				contentType:"application/json; charset=utf-8",	// body데이터가 어떤 타입인지 작성해주는것
-//				dataType: "json",	// 요청을 했을경우 응답이 왔을때 기본적으로 모든것을 문자열로 받는데
-//								// 문자열의 타입이 json이라면 javascript로 변경을 해준다
-//				success: function(res){
-//					alert("로그인이 완료되었습니다");
-//					location="/";
-//				},
-//				error:function(error){
-//					alert(JSON.stringify(error));
-//				}
-//			});
-//			}).success: (function (res){
-//				// 성공시 이쪽 코드
-//				alert(res+"성공");
-//				
-//			}).fail(function (error) {
-//				// 실패시 이쪽 코드
-//				alert("실패메세지");
-//				console.log(JSON.stringify(error));
-//
-//			});	
-			
-			// console.log(data);
-//		}
 	}
-index.init();
+
+index2.init();
+
+
+
+
+function execDaumPostcode() {
+		new daum.Postcode(
+				{
+					oncomplete : function(data) {
+						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+						// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+						var addr = ''; // 주소 변수
+						var extraAddr = ''; // 참고항목 변수
+
+						//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+							addr = data.roadAddress;
+						} else { // 사용자가 지번 주소를 선택했을 경우(J)
+							addr = data.jibunAddress;
+						}
+
+						// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+						if (data.userSelectedType === 'R') {
+							// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+							// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+							if (data.bname !== ''
+									&& /[동|로|가]$/g.test(data.bname)) {
+								extraAddr += data.bname;
+							}
+							// 건물명이 있고, 공동주택일 경우 추가한다.
+							if (data.buildingName !== ''
+									&& data.apartment === 'Y') {
+								extraAddr += (extraAddr !== '' ? ', '
+										+ data.buildingName : data.buildingName);
+							}
+							// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+							if (extraAddr !== '') {
+								extraAddr = ' (' + extraAddr + ')';
+							}
+							// 조합된 참고항목을 해당 필드에 넣는다.
+							document.getElementById("extraAddress").value = extraAddr;
+
+						} else {
+							document.getElementById("extraAddress").value = '';
+						}
+
+						// 우편번호와 주소 정보를 해당 필드에 넣는다.
+						document.getElementById('postcode').value = data.zonecode;
+						document.getElementById("address").value = addr;
+						// 커서를 상세주소 필드로 이동한다.
+						document.getElementById("detailAddress")
+								.focus();
+					}
+				}).open();
+	}

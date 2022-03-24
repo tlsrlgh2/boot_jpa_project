@@ -21,11 +21,10 @@
 	<dependencies>
 		<!-- 추가 라이브러리 시작 -->
 			
-			<dependency>
+			<!-- <dependency>
 			  <groupId>org.springframework.security</groupId>
 			  <artifactId>spring-security-taglibs</artifactId>
-			</dependency>
-			
+			</dependency> -->
 	
 			<!-- JSP 템플릿 엔진 -->
 			<dependency>
@@ -40,17 +39,30 @@
 			</dependency>
 		<!-- 추가 라이브러리 종료 -->
 		
+		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+		<dependency>
+		    <groupId>com.googlecode.json-simple</groupId>
+		    <artifactId>json-simple</artifactId>
+		    <version>1.1.1</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+		   <groupId>org.json</groupId>
+		   <artifactId>json</artifactId>
+		   <version>20200518</version>
 		</dependency>
 
 		<dependency>
@@ -76,11 +88,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
-		</dependency>
+		</dependency> -->
+		
+		
+		
 	</dependencies>
 
 	<build>

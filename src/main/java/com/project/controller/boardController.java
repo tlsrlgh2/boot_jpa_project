@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.model.board;
+import com.project.model.reply;
 import com.project.service.boardService;
 
 @Controller

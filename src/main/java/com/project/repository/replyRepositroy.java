@@ -13,4 +13,7 @@ public interface replyRepositroy extends JpaRepository<reply, Integer>{
 
 	void save(dto dto);
 
+
+	
+
 }

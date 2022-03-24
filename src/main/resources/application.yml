@@ -18,8 +18,8 @@ spring:
 #     suffix는 뒤에 붙여주는 경로명
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/sae1?serverTimezone=Asia/Seoul
-    username: sae1
+    url: jdbc:mysql://localhost:3306/soloproject?serverTimezone=Asia/Seoul
+    username: soloproject
     password: 1234
   devtools:
     livereload:

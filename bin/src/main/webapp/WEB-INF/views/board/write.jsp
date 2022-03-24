@@ -3,13 +3,13 @@
 
 <div class="container">
 	<div class="form-group">
-		<label for="title">title:</label> <input type="text" class="form-control" id="title" value="qwe">
+		<label for="title">title:</label> <input type="text" class="form-control" id="title">
 	</div>
 	<div class="form-group">
 		<label for="content">content:</label>
-		<textarea class="form-control summernote" rows="5" id="content" >qwe</textarea>
+		<textarea class="form-control summernote" rows="5" id="content"></textarea>
 	</div>
-	<input type="button" value="작성 완료" id="writesave" >
+	<input type="button" value="작성 완료" id="writesave">
 </div>
 
 <script>
