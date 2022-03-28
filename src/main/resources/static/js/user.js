@@ -1,6 +1,7 @@
 let index2 = {
 		
 		init: function() {
+
 			$("#joinuser").on("click", ()=>{	
 				this.joinuser();
 				console.log("joinuser ...");

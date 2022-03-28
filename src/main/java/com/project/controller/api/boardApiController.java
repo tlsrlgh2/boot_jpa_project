@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -81,6 +82,7 @@ public class boardApiController {
 			reply.setContent(dto.getContent());
 
 			boardService.replysave(reply);
+			
 			
 		} else {
 			throw new Exception();

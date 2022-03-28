@@ -55,9 +55,8 @@ public class userController {
 	}
 	
 	@GetMapping("/user/login")
-	public String userlogin() {
+	public void userlogin() {
 		
-		return "/user/login";
 	}
 	
 	@PostMapping("/user/join")
@@ -185,7 +184,6 @@ public class userController {
 	@PostMapping("/user/movie2")
 	public String movie(@RequestParam String date, Model model) throws Exception {
 		System.out.println(date);
-		ModelAndView mav = new ModelAndView();
 		
 		System.out.println("여기들어옴");
 		

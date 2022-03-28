@@ -57,11 +57,9 @@ public class userService {
 		
 	}
 
-	public Optional<user> selectid(int userid) {
+	public Optional<user> selectid(String userid) {
 		
-		return userrepository.findById(userid);
+		return userrepository.selectuserid(userid);
 	}
-
-
 	
 }

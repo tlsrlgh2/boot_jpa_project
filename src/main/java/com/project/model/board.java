@@ -30,7 +30,6 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @Entity
-@ToString
 public class board {
 
 	@Id
@@ -49,7 +48,8 @@ public class board {
     @CreationTimestamp
     private Timestamp createDate; // 22-03-15 파싱 처리 해야댐 수정필요
     
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER) 
     @JoinColumn(name="userid")
     private user user;
+    
 }

@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@include file="../layout/header.jsp"%>
 <div class="container">
-   <button id="selectbtn">조회하기</button>
+   <button class="btn btn-info" id="selectbtn">조회하기</button>
+	<br><br>
 	
 	<div id="content">
 		<table class="table">

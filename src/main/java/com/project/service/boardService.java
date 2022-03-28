@@ -88,13 +88,13 @@ public class boardService {
 		return  boardrepository.findAllById(parseInt);
 	}
 	
-	public void replysave(reply reply) {
+	public reply replysave(reply reply) {
 		System.out.println(reply + "reply save 안착");
 		
 		
 //		reply.setBoard();
 		
-		replyrepositroy.save(reply);
+		return replyrepositroy.save(reply);
 		
 	}
 

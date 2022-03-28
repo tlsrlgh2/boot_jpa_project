@@ -43,9 +43,6 @@
 					<li class="nav-item"><a class="nav-link" href="/user/hospital">보건 센터 보기</a></li>
 					<li class="nav-item"><a class="nav-link" href="/user/hospital2">보건 센터 보기(비동기식)</a></li>
 					<li class="nav-item"><a class="nav-link" href="/user/movie2">영화 리스트보기</a></li>
-						<!-- <li class="nav-item">
-							<button id="iteamlist">iteamlist</button>
-						</li> -->
 					</ul>
 				</div>
 			</c:when>
@@ -55,8 +52,10 @@
 					<li class="nav-item"><a class="nav-link" href="/user/modify">${userid}님 안녕하세요.</a></li>
 					<li class="nav-item"><a class="nav-link" href="/board/write">글쓰기</a></li>
 					<li class="nav-item"><a class="nav-link" href="/board/list">게시글 보기</a></li>
+					<li class="nav-item"><a class="nav-link" href="/user/hospital">보건 센터 보기</a></li>
+					<li class="nav-item"><a class="nav-link" href="/user/hospital2">보건 센터 보기(비동기식)</a></li>
+					<li class="nav-item"><a class="nav-link" href="/user/movie2">영화 리스트보기</a></li>
 					<li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
-					<li class="nav-item"><a class="nav-link" href="/user/movie">영화 리스트보기</a></li>
 				</ul>
 			</c:otherwise>
 		</c:choose>

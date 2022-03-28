@@ -22,8 +22,7 @@ import lombok.ToString;
 @ToString
 public class user {
 
-	@Id
-	@Column(name = "user_count")
+	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int user_count;
 	

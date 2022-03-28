@@ -22,7 +22,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@ToString
 @Builder
 public class reply {
 

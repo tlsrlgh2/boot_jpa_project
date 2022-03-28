@@ -1,5 +1,9 @@
 let star = {
+
+
+
 		init: function() {
+			
 			$("#writesave").on("click", ()=>{	
 				this.writesave();
 				console.log("save함수 ...");
@@ -124,7 +128,7 @@ let star = {
 		},
 		replychk: function() {
 			console.log("replychk ...");
-			
+			let pagid = $("#pageid").val()
 			let data = {
 				content: $("#content").val(),
 				boardid: $("#boardid").val(),
@@ -140,7 +144,7 @@ let star = {
 				contentType : "application/json; charset=UTF-8",
 				
 				success: function(res){
-					
+					location="/board/detail/"+pagid;
 				},
 				error:function(error){
 					alert(error);
