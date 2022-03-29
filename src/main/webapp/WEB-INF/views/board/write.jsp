@@ -9,7 +9,7 @@
 		<label for="content">content:</label>
 		<textarea class="form-control summernote" rows="5" id="content" >qwe</textarea>
 	</div>
-	<input type="button" value="작성 완료" id="writesave" >
+	<input class="btn btn-info" type="button" value="작성 완료" id="writesave" >
 </div>
 
 <script>

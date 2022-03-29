@@ -46,7 +46,7 @@ public class boardApiController {
 		
 		user user = userService.userinformation(userid);
 		System.out.println(user);
-		boardService.save(board,user); 	// list에 작성자 이름 나오게 수정필요
+		boardService.save(board,user); 	
 		
 		return "index";
 	}

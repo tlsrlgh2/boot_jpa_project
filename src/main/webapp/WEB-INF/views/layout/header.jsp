@@ -25,7 +25,7 @@
 
 	<div class="jumbotron text-center" style="margin-bottom: 0">
 		<h1>My First solo project</h1>
-		<p>혼자 완성해 가는 프로젝트</p>
+		<p>혼자 완성하는 프로젝트</p>
 	</div>
 
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">

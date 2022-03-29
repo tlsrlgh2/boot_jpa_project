@@ -57,7 +57,7 @@ public class boardController {
 	}
 	
 	@GetMapping("/board/list")
-	public void listform(Model model,@PageableDefault(size=2,sort = "id",direction = Sort.Direction.DESC) Pageable pageable) {
+	public void listform(Model model,@PageableDefault(size=5,sort = "id",direction = Sort.Direction.DESC) Pageable pageable) {
 		System.out.println("listform............................1");
 		model.addAttribute("boardlist", boardservice.listview(pageable));
 		System.out.println("문제없음");
